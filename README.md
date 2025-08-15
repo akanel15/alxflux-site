@@ -1,25 +1,15 @@
-# AlxFlux - Personal Services Hub
+# AlxFlux - Personal Lab
 
-A modern, self-hosted personal dashboard built with Astro and deployed via GitHub Actions to Oracle Cloud Infrastructure.
+**Live Sites:**
+- [alxflux.duckdns.org](https://alxflux.duckdns.org) - RSS Reader (Miniflux)
+- [alxflux.duckdns.org/home](https://alxflux.duckdns.org/home) - Dashboard
 
-**Live Site:** [alxflux.duckdns.org](https://alxflux.duckdns.org)
-
-## 🏗️ Architecture Overview
-
-```
-┌─────────────────────┐    ┌──────────────────┐    ┌─────────────────────┐
-│   GitHub Actions   │────│  Oracle Cloud VM │────│   Services Layer    │
-│   - Build & Test    │    │  - Caddy Proxy   │    │   - Miniflux RSS   │
-│   - Deploy via SSH  │    │  - Static Files   │    │   - Future Services │
-└─────────────────────┘    └──────────────────┘    └─────────────────────┘
-```
-
-### Infrastructure Stack
-- **Frontend**: Astro + Tailwind CSS (Static Site Generation)
+## Stack
+- **Frontend**: Astro + Tailwind CSS
 - **Hosting**: Oracle Cloud Free Tier VM
-- **Reverse Proxy**: Caddy Server
-- **CI/CD**: GitHub Actions with SSH deployment
-- **Domain**: DuckDNS (alxflux.duckdns.org)
+- **Proxy**: Caddy Server
+- **Deploy**: GitHub Actions + SSH
+- **Domain**: DuckDNS
 
 ## 🚀 Project Structure
 
@@ -75,106 +65,13 @@ alxflux-site/
 
 ## 🌐 Production Deployment
 
-### Server Configuration
+## URLs
+- **/** - RSS Reader (Miniflux)
+- **/home** - Dashboard
 
-The production server runs on Oracle Cloud with the following setup:
+## Deploy
+Push to `main` branch. GitHub Actions builds and deploys automatically.
 
-```
-/var/www/alxflux-site/current/    # Static site files
-/etc/caddy/Caddyfile              # Reverse proxy config
-```
-
-### Caddy Configuration
-
-```caddyfile
-alxflux.duckdns.org {
-    root * /var/www/alxflux-site/current
-    file_server
-    
-    # Proxy RSS reader to Miniflux
-    handle /reader* {
-        reverse_proxy 127.0.0.1:8080
-    }
-}
-```
-
-### Automated Deployment
-
-Every push to `main` triggers:
-1. Build static site with Astro
-2. Deploy via rsync over SSH
-3. Reload Caddy configuration
-4. Zero-downtime deployment
-
-## 🔧 Services
-
-### Active Services
-- **📰 RSS Reader**: Miniflux instance proxied at `/reader`
-- **🏠 Landing Page**: Service hub and status dashboard
-
-### Planned Services
-- **📁 File Storage**: Personal file sharing
-- **📊 Analytics Dashboard**: System monitoring
-- **📝 Notes/Wiki**: Personal knowledge base
-
-## 🔐 Security & SSH
-
-- Deployment uses SSH key authentication
-- Private keys stored in GitHub Secrets
-- Read-only deployment user on server
-- Automatic SSL via Caddy
-
-## 🚨 Disaster Recovery
-
-### Backup Strategy
-- Server configuration backed up to `/home/ubuntu/backups`
-- Git repository contains complete site source
-- Database backups (when applicable) automated
-
-### Recovery Steps
-1. Restore VM from Oracle Cloud backup
-2. Deploy from GitHub: `git push origin main`
-3. Restore service data from backups
-
-## 📈 Performance
-
-- **Static Site**: Fast loading with pre-built HTML/CSS/JS
-- **CDN Ready**: Optimized assets with Astro build
-- **Minimal JS**: Only ships necessary JavaScript
-- **Responsive**: Mobile-first design with Tailwind
-
-## 🛠️ Adding New Services
-
-1. **Create New Page**
-   ```bash
-   # Create src/pages/newservice.astro
-   ```
-
-2. **Update Navigation**
-   ```astro
-   # Add to src/layouts/Layout.astro
-   ```
-
-3. **Configure Reverse Proxy**
-   ```caddyfile
-   # Add to Caddy config
-   handle /newservice* {
-       reverse_proxy 127.0.0.1:PORT
-   }
-   ```
-
-4. **Deploy**
-   ```bash
-   git push origin main
-   ```
-
-## 🤝 Contributing
-
-This is a personal project, but feel free to:
-- Report issues or suggestions
-- Fork for your own setup
-- Share improvements
-
-## 📄 License
-
-MIT License - Feel free to use this setup for your own projects!
+## Services
+- RSS Reader (Miniflux) - Main service at root URL
+- Dashboard - Personal lab homepage
