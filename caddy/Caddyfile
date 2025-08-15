@@ -3,6 +3,12 @@
 }
 
 alxflux.duckdns.org {
+  # Serve static assets (CSS, JS, etc.)
+  handle /_astro/* {
+    root * /var/www/html
+    file_server
+  }
+  
   # Serve AlxFlux landing page at /home
   handle_path /home/* {
     root * /var/www/html
