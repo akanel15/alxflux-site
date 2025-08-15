@@ -33,7 +33,7 @@ jobs:
           
       - name: Create deployment directory
         run: |
-          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'mkdir -p /opt/alxflux-site'
+          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'mkdir -p ~/alxflux-site'
           
       - name: Deploy infrastructure files
         run: |
@@ -42,11 +42,11 @@ jobs:
             --exclude='.git*' \
             --exclude='node_modules' \
             --exclude='.env*' \
-            ./ ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:/opt/alxflux-site/
+            ./ ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }}:~/alxflux-site/
             
       - name: Create environment file
         run: |
-          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'cd /opt/alxflux-site && cat > .env << EOF
+          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'cd ~/alxflux-site && cat > .env << EOF
           DB_PASSWORD=${{ secrets.DB_PASSWORD }}
           ADMIN_USERNAME=${{ secrets.ADMIN_USERNAME }}
           ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}
@@ -54,7 +54,7 @@ jobs:
           
       - name: Deploy services
         run: |
-          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'cd /opt/alxflux-site && 
+          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'cd ~/alxflux-site && 
             echo "🛑 Stopping existing services..." &&
             docker-compose down --timeout 30 || true &&
             echo "🟢 Starting services with new config..." &&
