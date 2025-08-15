@@ -1,7 +1,5 @@
 {
   email alex.kanellis@me.com
-  # Enable automatic HTTPS
-  auto_https on
 }
 
 alxflux.duckdns.org {
