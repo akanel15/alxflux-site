@@ -4,29 +4,25 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="RSS Reader - AlxFlux">
 	<div class="min-h-screen">
-		<!-- Loading Message (will be replaced by server redirect) -->
+		<!-- RSS Reader Access Info -->
 		<section class="py-20">
 			<div class="max-w-4xl mx-auto px-4 text-center">
 				<div class="bg-gray-800 rounded-lg p-8">
 					<div class="text-6xl mb-6">📰</div>
-					<h1 class="text-3xl font-bold mb-4">RSS Reader</h1>
+					<h1 class="text-3xl font-bold mb-4">RSS Reader - Miniflux</h1>
 					<p class="text-gray-300 mb-6">
-						Redirecting you to Miniflux RSS Reader...
+						Your personal RSS reader is ready at <code>/reader/</code>
 					</p>
-					<div class="animate-spin w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-6"></div>
-					<p class="text-sm text-gray-400">
-						If you're not redirected automatically, <a href="/reader" class="text-blue-400 hover:text-blue-300">click here</a>.
-					</p>
-				</div>
-				
-				<!-- Development Note -->
-				<div class="mt-8 bg-yellow-900 border border-yellow-600 rounded-lg p-4">
-					<div class="text-yellow-300 font-semibold mb-2">🛠️ Development Mode</div>
-					<p class="text-yellow-200 text-sm">
-						In production, this page will be handled by Caddy reverse proxy to serve Miniflux directly at <code>/reader</code>.
-						<br>
-						Current Miniflux location: <a href="https://alxflux.duckdns.org" class="underline" target="_blank">alxflux.duckdns.org</a>
-					</p>
+					
+					<div class="space-y-4">
+						<a href="/reader/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+							Open RSS Reader
+						</a>
+						
+						<p class="text-sm text-gray-400">
+							Powered by Miniflux - fast, minimalist RSS reader
+						</p>
+					</div>
 				</div>
 			</div>
 		</section>
