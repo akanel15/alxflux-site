@@ -61,6 +61,7 @@ jobs:
       - name: Deploy services
         run: |
           ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'cd ~/alxflux-site && 
-            echo "🟢 Starting new AlxFlux infrastructure..." &&
+            echo "🟢 Restarting AlxFlux infrastructure with new files..." &&
+            docker-compose down &&
             docker-compose up -d &&
             echo "✅ Deployment complete!"'
