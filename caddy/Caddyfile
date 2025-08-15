@@ -3,6 +3,12 @@
 }
 
 alxflux.duckdns.org {
+  # Serve favicon
+  handle /favicon.svg {
+    root * /var/www/html
+    file_server
+  }
+  
   # Serve static assets (CSS, JS, etc.)
   handle /_astro/* {
     root * /var/www/html
