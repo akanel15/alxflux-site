@@ -22,7 +22,6 @@ services:
       - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - BASE_URL=https://alxflux.duckdns.org/reader/
     expose:
       - "8080"
     restart: unless-stopped

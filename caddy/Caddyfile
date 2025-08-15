@@ -3,8 +3,9 @@
 }
 
 alxflux.duckdns.org {
-  # Handle RSS reader requests - proxy to Miniflux (with BASE_URL set)
-  handle_path /reader* {
+  # Handle RSS reader requests - proxy to Miniflux
+  redir /reader /reader/
+  handle_path /reader/* {
     reverse_proxy app:8080
   }
   
