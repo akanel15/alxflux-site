@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=miniflux
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=miniflux
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - miniflux
+
+  app:
+    image: miniflux/miniflux:latest
+    depends_on: [db]
+    environment:
+      - DATABASE_URL=postgres://miniflux:${DB_PASSWORD}@db/miniflux?sslmode=disable
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+    expose:
+      - "8080"
+    restart: unless-stopped
+    networks:
+      - miniflux
+
+  caddy:
+    image: caddy:2
+    depends_on: [app]
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./dist:/var/www/html:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    networks:
+      - miniflux
+
+volumes:
+  db_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  miniflux:
