@@ -1,0 +1,47 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="AlxFlux - Your Personal Digital Hub" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+	<style>
+		@import '../styles/global.css';
+	</style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+	<nav class="bg-gray-800 shadow-lg">
+		<div class="max-w-6xl mx-auto px-4">
+			<div class="flex justify-between items-center py-4">
+				<a href="/" class="text-xl font-bold text-blue-400 hover:text-blue-300 transition-colors">
+					AlxFlux
+				</a>
+				<div class="flex space-x-6">
+					<a href="/" class="hover:text-blue-300 transition-colors">Home</a>
+					<a href="/reader" class="hover:text-blue-300 transition-colors">RSS Reader</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+	<main class="flex-grow">
+		<slot />
+	</main>
+	
+	<footer class="bg-gray-800 mt-auto">
+		<div class="max-w-6xl mx-auto px-4 py-6 text-center text-gray-400">
+			<p>&copy; 2025 AlxFlux - Powered by Oracle Cloud & GitHub Actions</p>
+		</div>
+	</footer>
+</body>
+</html>

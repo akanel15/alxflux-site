@@ -1,16 +1,80 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="AlxFlux - Personal Digital Hub">
+	<div class="min-h-screen">
+		<!-- Hero Section -->
+		<section class="bg-gradient-to-b from-blue-900 to-gray-900 py-20">
+			<div class="max-w-4xl mx-auto px-4 text-center">
+				<h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+					AlxFlux
+				</h1>
+				<p class="text-xl text-gray-300 mb-8">
+					Your Personal Digital Hub - Centralized access to all your services
+				</p>
+				<div class="flex justify-center">
+					<div class="w-16 h-1 bg-blue-500 rounded"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services Grid -->
+		<section class="py-16 px-4">
+			<div class="max-w-6xl mx-auto">
+				<h2 class="text-3xl font-bold text-center mb-12">Available Services</h2>
+				
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<!-- RSS Reader Service -->
+					<div class="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-all duration-300 border border-gray-700">
+						<div class="text-4xl mb-4">📰</div>
+						<h3 class="text-xl font-semibold mb-3 text-blue-400">RSS Reader</h3>
+						<p class="text-gray-300 mb-4">Stay updated with your favorite feeds using Miniflux - fast, minimalist RSS reader.</p>
+						<a href="/reader" class="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium">
+							Open Reader
+							<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+							</svg>
+						</a>
+					</div>
+
+					<!-- Coming Soon Services -->
+					<div class="bg-gray-800 rounded-lg p-6 border border-gray-700 opacity-75">
+						<div class="text-4xl mb-4">🚧</div>
+						<h3 class="text-xl font-semibold mb-3 text-gray-400">File Storage</h3>
+						<p class="text-gray-400 mb-4">Personal file storage and sharing service.</p>
+						<span class="inline-block bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm">Coming Soon</span>
+					</div>
+
+					<div class="bg-gray-800 rounded-lg p-6 border border-gray-700 opacity-75">
+						<div class="text-4xl mb-4">📊</div>
+						<h3 class="text-xl font-semibold mb-3 text-gray-400">Analytics Dashboard</h3>
+						<p class="text-gray-400 mb-4">Personal analytics and monitoring tools.</p>
+						<span class="inline-block bg-gray-700 text-gray-300 px-3 py-1 rounded text-sm">Coming Soon</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Status Section -->
+		<section class="bg-gray-800 py-12">
+			<div class="max-w-4xl mx-auto px-4 text-center">
+				<h2 class="text-2xl font-bold mb-8">Infrastructure Status</h2>
+				<div class="grid md:grid-cols-3 gap-6">
+					<div class="bg-gray-700 rounded p-4">
+						<div class="text-green-400 font-semibold">🟢 Online</div>
+						<div class="text-sm text-gray-300 mt-1">Oracle Cloud</div>
+					</div>
+					<div class="bg-gray-700 rounded p-4">
+						<div class="text-green-400 font-semibold">🟢 Active</div>
+						<div class="text-sm text-gray-300 mt-1">RSS Reader</div>
+					</div>
+					<div class="bg-gray-700 rounded p-4">
+						<div class="text-blue-400 font-semibold">🔄 Auto-Deploy</div>
+						<div class="text-sm text-gray-300 mt-1">GitHub Actions</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</Layout>
