@@ -52,11 +52,15 @@ jobs:
           ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}
           EOF'
           
+      - name: Stop existing containers
+        run: |
+          ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'cd ~/miniflux && 
+            echo "🛑 Stopping old Miniflux containers..." &&
+            docker-compose down --timeout 30 || true'
+            
       - name: Deploy services
         run: |
           ssh ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} 'cd ~/alxflux-site && 
-            echo "🛑 Stopping existing services..." &&
-            docker-compose down --timeout 30 || true &&
-            echo "🟢 Starting services with new config..." &&
+            echo "🟢 Starting new AlxFlux infrastructure..." &&
             docker-compose up -d &&
             echo "✅ Deployment complete!"'
